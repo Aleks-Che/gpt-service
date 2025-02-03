@@ -1,0 +1,31 @@
+### Подписки
+## Создание подписки
+POST http://localhost:8080/api/v1/subscriptions
+Cookie: JSESSIONID=28008A4B31AE62E20740FB1774CC5040
+Content-Type: application/json
+
+{
+  "name": "Premium",
+  "description": "Премиум подписка",
+  "price": 2999.99,
+  "durationDays": 30,
+  "modelIds": [1, 2]
+}
+
+### Обновление подписки
+PUT http://localhost:8080/api/v1/subscriptions/1
+Cookie: JSESSIONID=28008A4B31AE62E20740FB1774CC5040
+Content-Type: application/json
+
+{
+  "name": "Premium Plus",
+  "description": "Обновленная премиум подписка",
+  "price": 3999.99,
+  "durationDays": 30
+}
+
+### Получение всех подписок
+GET http://localhost:8080/api/v1/subscriptions
+
+### Удаление подписки
+DELETE http://localhost:8080/api/v1/subscriptions/1

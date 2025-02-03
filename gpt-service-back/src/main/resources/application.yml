@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASS}
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    open-in-view: false
+  mail:
+    host: ${MAIL_URL}
+    username: ${MAIL_USER}
+    password: ${MAIL_PASSWORD}
+    port: ${MAIL_PORT}
+    test-connection: true
+    properties:
+      mail:
+        smtp:
+          from: ${MAIL_FROM_ADDRESS}
+          auth: true
+          starttls:
+            enable: true
+  application:
+    name:
+      mail-sender
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: TRACE
+        type:
+          descriptor:
+            sql: TRACE
+server:
+  servlet:
+    context-path: /
+templates:
+  directory: ${TEMPLATES_DIR}

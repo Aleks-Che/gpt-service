@@ -1,0 +1,41 @@
+### Сообщения
+## Отправка текстового сообщения
+POST http://localhost:8080/api/v1/messages/conversation/1
+Content-Type: application/json
+
+{
+  "content": "Как работает квантовый компьютер?"
+}
+
+### Отправка сообщения с файлом
+POST http://localhost:8080/api/v1/messages/conversation/1/with-file
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="message"
+Content-Type: application/json
+
+{
+  "content": "Проанализируй этот документ"
+}
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="document.pdf"
+Content-Type: application/pdf
+
+< ./test-files/document.pdf
+--boundary--
+
+### Обновление сообщения
+PUT http://localhost:8080/api/v1/messages/1
+Content-Type: application/json
+
+{
+  "content": "Обновленный текст сообщения"
+}
+
+### Удаление сообщений после указанного
+DELETE http://localhost:8080/api/v1/messages/conversation/1/after/5
+
+### Удаление сообщения
+DELETE http://localhost:8080/api/v1/messages/1

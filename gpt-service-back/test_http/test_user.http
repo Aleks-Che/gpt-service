@@ -1,0 +1,52 @@
+### Пользователи
+## Добавление пользователя
+POST http://localhost:8080/user/create
+Content-Type: application/json
+
+{
+  "firstName": "Александр",
+  "lastName": "Чесноков",
+  "city": "Екатеринбург",
+  "password": "65536",
+  "username": "Aleks"
+}
+
+### Пользователи
+## Добавление пользователя
+POST http://localhost:8080/user/create
+Content-Type: application/json
+
+{
+  "firstName": "Артемий",
+  "lastName": "Попов",
+  "password": "123456A",
+  "city": "Екатеринбург",
+  "username": "Artem"
+}
+
+### Пользователи
+## Добавление пользователя
+POST http://localhost:8080/user/create
+Content-Type: application/json
+
+{
+  "firstName": "Иван",
+  "lastName": "Иванов",
+  "password": "123456A",
+  "city": "Екатеринбург"
+}
+
+### Пользователи
+## Получение пользователя по username
+GET http://localhost:8080/user/get/Artem
+Cookie: JSESSIONID=9CAB2EC4BAC7ACA9778C738F768320F1
+
+### Пользователи
+## Получение всех пользователей
+GET http://localhost:8080/user/all
+Cookie: JSESSIONID=9CAB2EC4BAC7ACA9778C738F768320F1
+
+### Пользователи
+## Получение информации о текущем пользователе
+GET http://localhost:8080/user/current
+Cookie: JSESSIONID=544566F76F3CFE68300E6CF359795194

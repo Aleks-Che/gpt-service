@@ -1,0 +1,25 @@
+### Доступы к моделям
+## Создание доступа
+POST http://localhost:8080/api/v1/subscription-model-access
+Content-Type: application/json
+
+{
+  "subscriptionId": 1,
+  "modelId": 1,
+  "monthlyRequestLimit": 1000,
+  "maxTokensPerRequest": 4000,
+  "maxFileSizeMb": 10
+}
+
+### Обновление доступа
+PUT http://localhost:8080/api/v1/subscription-model-access/1
+Content-Type: application/json
+
+{
+  "monthlyRequestLimit": 2000,
+  "maxTokensPerRequest": 8000,
+  "maxFileSizeMb": 20
+}
+
+### Удаление доступа
+DELETE http://localhost:8080/api/v1/subscription-model-access/1
