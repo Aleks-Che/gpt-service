@@ -4,12 +4,15 @@ import { useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { QueryFunction, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import { fetchConversations } from '../api/api';
 import { RootState } from '../store';
 import { Conversation } from '../types';
 import AnimatedLogo from './AnimatedLogo';
+
+import "@fontsource/montserrat/200.css";
+import "@fontsource/montserrat/400.css";
 
 const SidebarContainer = styled.div`
   width: 260px;
@@ -18,6 +21,7 @@ const SidebarContainer = styled.div`
   padding: 1rem;
   display: flex;
   flex-direction: column;
+  font-family: roboto;
 `;
 
 const NewChatButton = styled.button`
@@ -29,6 +33,8 @@ const NewChatButton = styled.button`
   border-radius: 4px;
   cursor: pointer;
   margin-bottom: 1rem;
+  font-family: montserrat;
+  font-weight: 300;
 `;
 
 const ConversationList = styled.div`
@@ -43,8 +49,12 @@ const Logo = styled.div`
   cursor: pointer;
   text-align: center;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  gap: 12px;
+  padding-left: 8px;
+  font-family: montserrat;
+  font-weight: 200;
 `;
 
 
@@ -68,6 +78,8 @@ const ProfileButton = styled.button<{ $isActive?: boolean }>`
   color: white;
   cursor: pointer;
   border-radius: 4px;
+  font-family: montserrat;
+  font-weight: 300;
 `;
 
 const LogoutButton = styled.button`
@@ -80,7 +92,7 @@ const LogoutButton = styled.button`
   color: #666;
   
   &:hover {
-    color: #2b7efb;
+    color:rgb(8, 107, 63);
   }
 `;
 
@@ -107,8 +119,10 @@ const Sidebar: React.FC = () => {
 
   return (
     <SidebarContainer>
-      <AnimatedLogo />
-      <Logo onClick={() => navigate('/')}>GPT SERVICE</Logo>
+      <Logo onClick={() => navigate('/')}>
+        <AnimatedLogo />
+        GPT SERVICE
+      </Logo>
       <NewChatButton>Новый чат</NewChatButton>
       <ConversationList>
         {conversations.map((conv: Conversation) => (

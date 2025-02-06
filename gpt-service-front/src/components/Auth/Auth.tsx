@@ -39,7 +39,7 @@ const AuthContainer = styled.div<{ $isRegistering: boolean }>`
 const GoogleButton = styled.button`
   width: 80%;
   padding: 1rem;
-  margin: 1rem 0;
+  margin: 0.5rem 0 0 0;
   background: #4285f4;
   color: white;
   border: none;
@@ -47,26 +47,45 @@ const GoogleButton = styled.button`
   cursor: pointer;
 `;
 
-const Auth: React.FC = () => {
-    const [isRegistering, setIsRegistering] = useState(false);
+const Divider = styled.div`
+  display: flex;
+  align-items: center;
+  width: 80%;
+  margin: 1rem 0;
+  text-align: center;
+  
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ddd;
+  }
 
-    return (
-        <AuthWrapper>
-            <P5Container>
-                <P5Background width={window.innerWidth} height={window.innerHeight} />
-            </P5Container>
-            <AuthContainer $isRegistering={isRegistering}>
-                {/* existing content */}
-                <GoogleButton>Войти через Google</GoogleButton>
-                <div>или</div>
-                {isRegistering ? (
-                    <RegisterForm onBack={() => setIsRegistering(false)} />
-                ) : (
-                    <LoginForm onRegister={() => setIsRegistering(true)} />
-                )}
-            </AuthContainer>
-        </AuthWrapper>
-    );
+  span {
+    padding: 0 1rem;
+    color: #666;
+  }
+`;
+
+const Auth: React.FC = () => {
+  const [isRegistering, setIsRegistering] = useState(false);
+
+  return (
+    <AuthWrapper>
+      <P5Container>
+        <P5Background width={window.innerWidth} height={window.innerHeight} />
+      </P5Container>
+      <AuthContainer $isRegistering={isRegistering}>
+        <GoogleButton>Войти через Google</GoogleButton>
+        <Divider><span>или</span></Divider>
+        {isRegistering ? (
+          <RegisterForm onBack={() => setIsRegistering(false)} />
+        ) : (
+          <LoginForm onRegister={() => setIsRegistering(true)} />
+        )}
+      </AuthContainer>
+    </AuthWrapper>
+  );
 };
 
 export default Auth;

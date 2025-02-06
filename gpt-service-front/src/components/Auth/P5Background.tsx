@@ -2,10 +2,9 @@ import p5 from 'p5';
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-// import "@fontsource/montserrat"; // Defaults to weight 400
 import BigAnimatedLogo from './BigAnimatedLogo';
 
-import "@fontsource/montserrat/100.css"; // Specify weight
+import "@fontsource/montserrat/100.css";
 
 interface P5BackgroundProps {
     width: number;
@@ -47,7 +46,10 @@ const SiteTitle = styled.h1`
   color: #ffffff;
   text-shadow: 0 0 5px #000;
   font-family: montserrat;
+  font-weight: 100;
+  user-select: none;
 `;
+
 
 const P5Background: React.FC<P5BackgroundProps> = ({ width, height }) => {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -57,10 +59,6 @@ const P5Background: React.FC<P5BackgroundProps> = ({ width, height }) => {
 
         const sketch = (p: p5) => {
             let numShapes = p.floor(p.random(7, 26)); // случайное количество от 7 до 25
-            p.preload = () => {
-                // Если используете p.loadFont, укажите правильный путь к файлу шрифта, предварительно переместив его в public, например:
-                // font = p.loadFont('/assets/fonts/Montserrat-Regular.ttf');
-            };
 
             p.setup = () => {
                 p.createCanvas(width, height);
@@ -92,7 +90,12 @@ const P5Background: React.FC<P5BackgroundProps> = ({ width, height }) => {
                 }
 
                 p.noFill();
-                p.stroke(100, 100, 255, 80);
+                p.stroke(
+                    p.random(30, 50),
+                    p.random(40, 80),
+                    p.random(30, 50),
+                    80
+                );
                 p.strokeWeight(2);
                 shapes.forEach((shape) => {
                     shape.x += shape.dx;
@@ -136,8 +139,6 @@ const P5Background: React.FC<P5BackgroundProps> = ({ width, height }) => {
                     p.endShape();
                     p.pop();
                 });
-
-                // Удалили отрисовку текста внутри канваса, чтобы название сайта отображалось только в OverlayContainer
             };
         };
 

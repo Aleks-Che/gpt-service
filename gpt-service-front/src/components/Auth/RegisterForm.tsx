@@ -61,6 +61,20 @@ interface FormErrors {
   phoneNumber?: string;
 }
 
+const AnimatedForm = styled(Form)`
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in-out 0.2s forwards;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+`;
+
 const RegisterForm: React.FC<RegisterFormProps> = ({ onBack }) => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [formData, setFormData] = useState<FormData>({
@@ -144,17 +158,17 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onBack }) => {
 
   if (isSuccess) {
     return (
-      <Form>
+      <AnimatedForm>
         <SuccessMessage>
           Пользователь успешно зарегистрирован!
           <br />
           Теперь вы можете войти.
         </SuccessMessage>
         <BackButton onClick={onBack}>Назад</BackButton>
-      </Form>
+      </AnimatedForm>
     );
   } else return (
-    <Form onSubmit={handleSubmit}>
+    <AnimatedForm onSubmit={handleSubmit}>
       <Input
         placeholder="Имя пользователя"
         name="username"
@@ -218,7 +232,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onBack }) => {
 
       <Button type="submit">Зарегистрироваться</Button>
       <BackButton onClick={onBack}>Назад</BackButton>
-    </Form>
+    </AnimatedForm>
   );
 };
 

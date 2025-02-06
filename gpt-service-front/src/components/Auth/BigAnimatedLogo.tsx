@@ -44,6 +44,8 @@ interface BigAnimatedLogoProps {
   electronSize?: number;
   centralBallSize?: number;
   orbitThickness?: number;
+  centralBallColor?: string;
+  orbitColor?: string;
 }
 
 const BigAnimatedLogo: React.FC<BigAnimatedLogoProps> = ({
@@ -54,7 +56,9 @@ const BigAnimatedLogo: React.FC<BigAnimatedLogoProps> = ({
   orbitDiameters = [40, 56, 72],
   electronSize = 3,
   centralBallSize = 10,
-  orbitThickness = 1
+  orbitThickness = 1,
+  centralBallColor = '#1f7c66',
+  orbitColor = '#38665b'
 }) => {
   const LogoContainer = styled.div`
     perspective: 300px;
@@ -69,7 +73,7 @@ const BigAnimatedLogo: React.FC<BigAnimatedLogoProps> = ({
   const CentralBall = styled.div`
     width: ${centralBallSize * sizeMultiplier}px;
     height: ${centralBallSize * sizeMultiplier}px;
-    background-color: #10a37f;
+    background-color: ${centralBallColor};
     border-radius: 50%;
     position: absolute;
     top: 50%;
@@ -81,7 +85,7 @@ const BigAnimatedLogo: React.FC<BigAnimatedLogoProps> = ({
   const Orbit = styled.div<OrbitProps>`
     width: ${p => p.diameter * sizeMultiplier}px;
     height: ${p => p.diameter * sizeMultiplier}px;
-    border: ${orbitThickness}px solid #10a37f;
+    border: ${orbitThickness}px solid ${orbitColor};
     border-radius: 50%;
     position: absolute;
     top: 50%;
@@ -98,7 +102,7 @@ const BigAnimatedLogo: React.FC<BigAnimatedLogoProps> = ({
   const Electron = styled.div<{ orbitDiameter: number; initialPositionAngle: number }>`
     width: ${electronSize * sizeMultiplier}px;
     height: ${electronSize * sizeMultiplier}px;
-    background-color: #10a37f;
+    background-color: ${orbitColor};
     border-radius: 50%;
     position: absolute;
     top: 50%;
