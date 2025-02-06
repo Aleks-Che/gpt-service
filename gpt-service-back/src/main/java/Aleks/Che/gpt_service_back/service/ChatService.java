@@ -1,7 +1,7 @@
 package Aleks.Che.gpt_service_back.service;
 
 import Aleks.Che.gpt_service_back.dto.ChatDTO;
-import Aleks.Che.gpt_service_back.model.ChatEntity;
+import Aleks.Che.gpt_service_back.model.Chat;
 import Aleks.Che.gpt_service_back.model.LlmModel;
 import Aleks.Che.gpt_service_back.model.user.User;
 import Aleks.Che.gpt_service_back.repository.ChatRepository;
@@ -23,11 +23,11 @@ public class ChatService {
     private final UserService userService;
     private final LlmModelService modelService;
     
-    public ChatEntity createChat(ChatDTO dto) {
+    public Chat createChat(ChatDTO dto) {
         User currentUser = userService.getCurrentUser();
         LlmModel model = modelService.getModelById(dto.getModelId());
 
-        ChatEntity chat = new ChatEntity();
+        Chat chat = new Chat();
         chat.setUser(currentUser);
         chat.setTitle(dto.getTitle());
         chat.setModel(model);
@@ -37,8 +37,8 @@ public class ChatService {
         return chatRepository.save(chat);
     }
     
-    public ChatEntity updateChat(Long id, ChatDTO dto) {
-        ChatEntity chat = chatRepository.findById(id)
+    public Chat updateChat(Long id, ChatDTO dto) {
+        Chat chat = chatRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("Беседа не найдена"));
             
         chat.setTitle(dto.getTitle());
@@ -47,19 +47,19 @@ public class ChatService {
         return chatRepository.save(chat);
     }
     
-    public List<ChatEntity> getCurrentUserChats() {
+    public List<Chat> getCurrentUserChats() {
         User currentUser = userService.getCurrentUser();
         return chatRepository.findByUserOrderByUpdatedAtDesc(currentUser);
     }
 
-    public ChatEntity getChatById(Long id) {
+    public Chat getChatById(Long id) {
         return chatRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Беседа с ID " + id + " не найдена"));
     }
 
     public void deleteChat(Long id) throws AccessDeniedException {
         User currentUser = userService.getCurrentUser();
-        ChatEntity chat = chatRepository.findById(id)
+        Chat chat = chatRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Беседа не найдена"));
 
         if (!chat.getUser().getId().equals(currentUser.getId())) {

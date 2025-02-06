@@ -3,7 +3,7 @@ package Aleks.Che.gpt_service_back.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "t_message")
@@ -15,7 +15,7 @@ public class Message {
     
     @ManyToOne
     @JoinColumn(name = "chat_id")
-    private ChatEntity chat;
+    private Chat chat;
     
     @Enumerated(EnumType.STRING)
     private MessageType messageType;
@@ -24,7 +24,7 @@ public class Message {
     private String content;
     
     private Integer tokensCount;
-    private LocalDateTime createdAt;
+    private Timestamp createdAt;
     private String filePath;
     private Long fileSizeBytes;
     private String fileMimeType;

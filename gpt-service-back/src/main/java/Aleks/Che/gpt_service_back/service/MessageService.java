@@ -1,7 +1,7 @@
 package Aleks.Che.gpt_service_back.service;
 
 import Aleks.Che.gpt_service_back.dto.MessageDTO;
-import Aleks.Che.gpt_service_back.model.ChatEntity;
+import Aleks.Che.gpt_service_back.model.Chat;
 import Aleks.Che.gpt_service_back.model.Message;
 import Aleks.Che.gpt_service_back.model.MessageType;
 import Aleks.Che.gpt_service_back.repository.MessageRepository;
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Service
@@ -25,14 +26,14 @@ public class MessageService {
     private final FileStorageService fileStorageService;
     
     public Message sendMessage(Long chatId, MessageDTO dto) {
-        ChatEntity chat = chatService.getChatById(chatId);
+        Chat chat = chatService.getChatById(chatId);
         
         Message message = new Message();
         message.setChat(chat);
         message.setMessageType(MessageType.REQUEST);
         message.setContent(dto.getContent());
         message.setTokensCount(calculateTokens(dto.getContent()));
-        message.setCreatedAt(LocalDateTime.now());
+        message.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         
         Message savedMessage = messageRepository.save(message);
         
@@ -63,7 +64,7 @@ public class MessageService {
         return content.length() / 4; // Упрощенный пример
     }
     
-    private Message processLlmResponse(ChatEntity chat, String prompt) {
+    private Message processLlmResponse(Chat chat, String prompt) {
         // Логика обработки запроса к LLM модели и сохранение ответа
         return null; // Заглушка
     }

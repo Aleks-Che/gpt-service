@@ -19,6 +19,5 @@ public class ChatDTO {
     private Long userId;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private boolean isArchived;
     private List<MessageDTO> messages;
 }

@@ -96,7 +96,7 @@ public class OrderService {
     private void saveOrder(Order order, List<OrderProduct> orderProducts, Integer totalPrice) {
         order.setOrderProducts(orderProducts);
         order.setTotalPrice(totalPrice);
-        order.setDateRegistration(new Timestamp(System.currentTimeMillis()));
+        order.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         order.setStatus(Status.PROCESSED);
         order.setOrderNumber(String.valueOf(Math.round(Math.random() * 1000000000)));
         orderRepository.save(order);

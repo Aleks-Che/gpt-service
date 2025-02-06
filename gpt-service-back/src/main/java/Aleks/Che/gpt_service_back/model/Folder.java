@@ -1,36 +1,34 @@
 package Aleks.Che.gpt_service_back.model;
 
+import Aleks.Che.gpt_service_back.model.Chat;
 import Aleks.Che.gpt_service_back.model.user.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "t_chat")
+@Table(name = "t_folder")
 @Data
-public class ChatEntity {
+@NoArgsConstructor
+@AllArgsConstructor
+public class Folder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    private String name;
     
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
     
-    private String title;
-    
-    @ManyToOne
-    @JoinColumn(name = "model_id")
-    private LlmModel model;
-    
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-    private boolean isArchived;
     
-    @OneToMany(mappedBy = "chat")
-    @JsonIgnore
-    private List<Message> messages;
+    @OneToMany(mappedBy = "folder", cascade = CascadeType.ALL)
+    private List<Chat> chats;
 }

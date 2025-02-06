@@ -29,10 +29,10 @@ public class LlmModel {
     private Integer maxTokens;
     private BigDecimal temperature;
     private boolean isActive;
-    private LocalDateTime createdAt;
 
     @OneToMany(mappedBy = "model")
     @JsonIgnore
     private Set<SubscriptionModelAccess> subscriptionAccesses;
-
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }

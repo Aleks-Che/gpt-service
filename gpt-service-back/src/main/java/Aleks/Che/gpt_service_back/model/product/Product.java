@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Timestamp;
+
 @Entity
 @Getter
 @Setter
@@ -21,4 +23,6 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private ProductCategory category;
     private String advancedOptions;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
 }

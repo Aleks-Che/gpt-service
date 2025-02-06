@@ -1,7 +1,7 @@
 package Aleks.Che.gpt_service_back.controller;
 
 import Aleks.Che.gpt_service_back.dto.ChatDTO;
-import Aleks.Che.gpt_service_back.model.ChatEntity;
+import Aleks.Che.gpt_service_back.model.Chat;
 import Aleks.Che.gpt_service_back.service.ChatService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +18,13 @@ public class ChatController {
     private final ChatService chatService;
     
     @PostMapping
-    public ResponseEntity<ChatEntity> createСhat(@RequestBody ChatDTO chatDTO) {
+    public ResponseEntity<Chat> createСhat(@RequestBody ChatDTO chatDTO) {
         return ResponseEntity.ok(chatService.createChat(chatDTO));
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<ChatEntity> updateСhat(@PathVariable Long id,
-                                                         @RequestBody ChatDTO chatDTO) {
+    public ResponseEntity<Chat> updateСhat(@PathVariable Long id,
+                                           @RequestBody ChatDTO chatDTO) {
         return ResponseEntity.ok(chatService.updateChat(id, chatDTO));
     }
     
@@ -35,7 +35,7 @@ public class ChatController {
     }
     
     @GetMapping
-    public ResponseEntity<List<ChatEntity>> getUserChats() {
+    public ResponseEntity<List<Chat>> getUserChats() {
         return ResponseEntity.ok(chatService.getCurrentUserChats());
     }
 }

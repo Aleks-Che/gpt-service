@@ -6,9 +6,9 @@ import styled from 'styled-components';
 
 import { useQuery } from '@tanstack/react-query';
 
-import { fetchConversations } from '../api/api';
+import { fetchChats } from '../api/api';
 import { RootState } from '../store';
-import { Conversation } from '../types';
+import { Chat } from '../types';
 import AnimatedLogo from './AnimatedLogo';
 
 import "@fontsource/montserrat/200.css";
@@ -37,7 +37,7 @@ const NewChatButton = styled.button`
   font-weight: 300;
 `;
 
-const ConversationList = styled.div`
+const ChatList = styled.div`
   flex: 1;
   overflow-y: auto;
 `;
@@ -102,10 +102,10 @@ const Sidebar: React.FC = () => {
   const user = useSelector((state: RootState) => state.auth.user);
   const isAdmin = user?.roles.includes('ADMIN');
 
-  const { data } = useQuery<Conversation[], Error>({
-    queryKey: ['conversations'],
+  const { data } = useQuery<Chat[], Error>({
+    queryKey: ['chats'],
     queryFn: async () => {
-      const response = await fetchConversations();
+      const response = await fetchChats();
       return response.data;
     }
   });
@@ -115,7 +115,7 @@ const Sidebar: React.FC = () => {
     window.location.href = '/login';
   };
 
-  const conversations = data || [];
+  const chatList = data || [];
 
   return (
     <SidebarContainer>
@@ -124,11 +124,11 @@ const Sidebar: React.FC = () => {
         GPT SERVICE
       </Logo>
       <NewChatButton>Новый чат</NewChatButton>
-      <ConversationList>
-        {conversations.map((conv: Conversation) => (
+      <ChatList>
+        {chatList.map((conv: Chat) => (
           <div key={conv.id}>{conv.title}</div>
         ))}
-      </ConversationList>
+      </ChatList>
       <ButtonsContainer>
         {isAdmin && (
           <ProfileButton

@@ -30,6 +30,7 @@ CREATE TABLE t_llm_model (
     temperature DECIMAL(3,2),
     is_active BOOLEAN DEFAULT true,
     created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITHOUT TIME ZONE,
     CONSTRAINT pk_llm_model PRIMARY KEY (id)
 );
 

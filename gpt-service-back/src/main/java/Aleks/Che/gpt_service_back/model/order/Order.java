@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -19,8 +20,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String orderNumber;
-    private Timestamp dateRegistration;
-    private Timestamp dateReceipt;
+    private Timestamp paymentDate;
     private Integer totalPrice;
     @Enumerated(EnumType.STRING)
     private Status status;
@@ -30,4 +30,6 @@ public class Order {
     @JsonIgnore
     @JoinColumn(name = "user_id")
     private User user;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
 }

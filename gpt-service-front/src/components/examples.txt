@@ -1,0 +1,617 @@
+good:
+[
+    {
+        "diameter": 20,
+        "initialRotation2d": 68.33596046456336,
+        "initialRotationX": 304.1065699474664,
+        "initialRotationY": 260.05545530218984,
+        "hoverRotation2d": 23.403987593004096,
+        "hoverRotationX": 226.4203707067247,
+        "hoverRotationY": 48.668514139283275
+    },
+    {
+        "diameter": 28,
+        "initialRotation2d": 42.573378325398615,
+        "initialRotationX": 26.15073026047338,
+        "initialRotationY": 144.3158232475584,
+        "hoverRotation2d": 567.8527228866012,
+        "hoverRotationX": 718.6884483859367,
+        "hoverRotationY": 187.4459372126773
+    },
+    {
+        "diameter": 36,
+        "initialRotation2d": 232.44143895153078,
+        "initialRotationX": 71.17449047159423,
+        "initialRotationY": 196.10368732031367,
+        "hoverRotation2d": 295.0121529652142,
+        "hoverRotationX": 133.07348797045046,
+        "hoverRotationY": 318.9645378950185
+    }
+],
+[
+    {
+        "diameter": 20,
+        "initialRotation2d": 150.24051142725781,
+        "initialRotationX": 173.30429210113272,
+        "initialRotationY": 207.0718550975306,
+        "hoverRotation2d": 32.99940995039135,
+        "hoverRotationX": 20.17961380771166,
+        "hoverRotationY": 135.09013629581364
+    },
+    {
+        "diameter": 28,
+        "initialRotation2d": 144.94939773870726,
+        "initialRotationX": 238.19544285424365,
+        "initialRotationY": 219.2515886235027,
+        "hoverRotation2d": -297.4342231600064,
+        "hoverRotationX": -204.11047988655926,
+        "hoverRotationY": -187.96123091981275
+    },
+    {
+        "diameter": 36,
+        "initialRotation2d": 179.56027203076727,
+        "initialRotationX": 166.24617491669687,
+        "initialRotationY": 194.21128063672975,
+        "hoverRotation2d": -116.62635432225944,
+        "hoverRotationX": -69.99846899574497,
+        "hoverRotationY": -51.16503065312573
+    }
+]
+[
+    {
+        "diameter": 20,
+        "initialRotation2d": 96.07620492202558,
+        "initialRotationX": 240.23430840740141,
+        "initialRotationY": 319.6602224664911,
+        "hoverRotation2d": 262.01933180025975,
+        "hoverRotationX": 323.0884153183733,
+        "hoverRotationY": 191.90252108642278
+    },
+    {
+        "diameter": 28,
+        "initialRotation2d": 168.55109180960164,
+        "initialRotationX": 26.160761545166842,
+        "initialRotationY": 334.71284340001176,
+        "hoverRotation2d": 447.15371569466254,
+        "hoverRotationX": 232.40325172057285,
+        "hoverRotationY": 549.7223046594863
+    },
+    {
+        "diameter": 36,
+        "initialRotation2d": 119.64337786263266,
+        "initialRotationX": 312.98732549851456,
+        "initialRotationY": 139.12253001313474,
+        "hoverRotation2d": 257.63724993225793,
+        "hoverRotationX": 31.20150512600631,
+        "hoverRotationY": 315.3272833526586
+    }
+],
+[
+    {
+        "diameter": 20,
+        "initialRotation2d": 316.5234119777256,
+        "initialRotationX": 289.7371322433133,
+        "initialRotationY": 347.08582237765154,
+        "hoverRotation2d": 233.21840057150513,
+        "hoverRotationX": 322.8619071013448,
+        "hoverRotationY": 318.5552202358824
+    },
+    {
+        "diameter": 28,
+        "initialRotation2d": 84.92273850493551,
+        "initialRotationX": 63.18378691329454,
+        "initialRotationY": 53.3364433122606,
+        "hoverRotation2d": 661.9581027831105,
+        "hoverRotationX": 573.2326144145138,
+        "hoverRotationY": 133.60903290933868
+    },
+    {
+        "diameter": 36,
+        "initialRotation2d": 348.24785090289214,
+        "initialRotationX": 249.83512740471178,
+        "initialRotationY": 189.87034695843622,
+        "hoverRotation2d": 299.9609995449597,
+        "hoverRotationX": 54.27252343688607,
+        "hoverRotationY": 13.247365070034496
+    }
+];
+
+
+
+eye:
+[
+    {
+        "diameter": 20,
+        "initialRotation2d": 192.88330353150718,
+        "initialRotationX": 164.1920972169198,
+        "initialRotationY": 194.32013726443284,
+        "hoverRotation2d": 312.7169823648228,
+        "hoverRotationX": 205.17766427339993,
+        "hoverRotationY": 178.71309016695156
+    },
+    {
+        "diameter": 28,
+        "initialRotation2d": 218.97131483749547,
+        "initialRotationX": 190.3706088003664,
+        "initialRotationY": 165.7437694066114,
+        "hoverRotation2d": 608.8249371819215,
+        "hoverRotationX": 313.30236596258504,
+        "hoverRotationY": 327.22550457879004
+    },
+    {
+        "diameter": 36,
+        "initialRotation2d": 178.46708060817772,
+        "initialRotationX": 230.52852698189326,
+        "initialRotationY": 184.21462419591708,
+        "hoverRotation2d": 392.7099143402098,
+        "hoverRotationX": 163.00635658405588,
+        "hoverRotationY": 262.65384359745417
+    }
+]
+[
+    {
+        "diameter": 20,
+        "initialRotation2d": 230.40668609138103,
+        "initialRotationX": 173.80978840407826,
+        "initialRotationY": 194.58544109562453,
+        "hoverRotation2d": 28.64961666036997,
+        "hoverRotationX": 135.4735042074964,
+        "hoverRotationY": 12.305201786548015
+    },
+    {
+        "diameter": 28,
+        "initialRotation2d": 236.60266947508586,
+        "initialRotationX": 214.9719219943342,
+        "initialRotationY": 181.70692559708058,
+        "hoverRotation2d": 232.19219101276263,
+        "hoverRotationX": 265.1907073035032,
+        "hoverRotationY": 25.779146923458953
+    },
+    {
+        "diameter": 36,
+        "initialRotation2d": 239.4482764690505,
+        "initialRotationX": 219.56650637503753,
+        "initialRotationY": 202.1430649278214,
+        "hoverRotation2d": -31.732633154823354,
+        "hoverRotationX": -1.5853276205520461,
+        "hoverRotationY": -126.41574538813522
+    }
+]
+[
+    {
+        "diameter": 20,
+        "initialRotation2d": 189.11108365533326,
+        "initialRotationX": 182.84672668109314,
+        "initialRotationY": 215.44274545687654,
+        "hoverRotation2d": 109.33551271663147,
+        "hoverRotationX": 117.01890613921931,
+        "hoverRotationY": 96.99042760714757
+    },
+    {
+        "diameter": 28,
+        "initialRotation2d": 249.84055866945693,
+        "initialRotationX": 254.46500227846553,
+        "initialRotationY": 217.49354145984648,
+        "hoverRotation2d": 89.36102847328355,
+        "hoverRotationX": 105.79146919642726,
+        "hoverRotationY": 250.49878709525981
+    },
+    {
+        "diameter": 36,
+        "initialRotation2d": 171.4654876894255,
+        "initialRotationX": 229.82108159357207,
+        "initialRotationY": 185.70438780678293,
+        "hoverRotation2d": 75.0076990176116,
+        "hoverRotationX": 121.64057254735152,
+        "hoverRotationY": 23.702348576272914
+    }
+]
+[
+    {
+        "diameter": 20,
+        "initialRotation2d": 182.60930727899822,
+        "initialRotationX": 176.3502507731947,
+        "initialRotationY": 214.45924427071532,
+        "hoverRotation2d": -68.06149474964658,
+        "hoverRotationX": -144.4732444118748,
+        "hoverRotationY": -51.65279842591987
+    },
+    {
+        "diameter": 28,
+        "initialRotation2d": 220.9127716067727,
+        "initialRotationX": 197.51660011149986,
+        "initialRotationY": 145.54123441011063,
+        "hoverRotation2d": 116.56813090472366,
+        "hoverRotationX": 151.53633182151754,
+        "hoverRotationY": 13.10566343835684
+    },
+    {
+        "diameter": 36,
+        "initialRotation2d": 196.07654628336454,
+        "initialRotationX": 161.56511246774193,
+        "initialRotationY": 150.6273615744993,
+        "hoverRotation2d": -103.7920926157511,
+        "hoverRotationX": -66.19233888333318,
+        "hoverRotationY": -124.34304509438768
+    }
+]
+[
+    {
+        "diameter": 20,
+        "initialRotation2d": 187.69236647565964,
+        "initialRotationX": 165.28202499944658,
+        "initialRotationY": 143.00057958099575,
+        "hoverRotation2d": -141.40561047290169,
+        "hoverRotationX": -81.3993652916604,
+        "hoverRotationY": -51.93624145692996
+    },
+    {
+        "diameter": 28,
+        "initialRotation2d": 206.28199235960304,
+        "initialRotationX": 220.64195952322575,
+        "initialRotationY": 218.18682524466072,
+        "hoverRotation2d": 293.0023864606354,
+        "hoverRotationX": 296.56208713696543,
+        "hoverRotationY": 120.85917147944711
+    },
+    {
+        "diameter": 36,
+        "initialRotation2d": 249.26805655333882,
+        "initialRotationX": 232.11988270827274,
+        "initialRotationY": 189.15638694383443,
+        "hoverRotation2d": 30.830544819505945,
+        "hoverRotationX": 84.91015834028879,
+        "hoverRotationY": 113.39357611340478
+    }
+]
+[
+    {
+        "diameter": 20,
+        "initialRotation2d": 131.83545637316016,
+        "initialRotationX": 202.39466269370484,
+        "initialRotationY": 164.17847861490787,
+        "hoverRotation2d": 142.91288584368596,
+        "hoverRotationX": 90.44421572854682,
+        "hoverRotationY": 98.14917693676072
+    },
+    {
+        "diameter": 28,
+        "initialRotation2d": 203.16137759333495,
+        "initialRotationX": 226.26188027315715,
+        "initialRotationY": 190.26188452616998,
+        "hoverRotation2d": 5.433769106891662,
+        "hoverRotationX": 242.24608243821626,
+        "hoverRotationY": 143.22955685325292
+    },
+    {
+        "diameter": 36,
+        "initialRotation2d": 168.94414887447635,
+        "initialRotationX": 271.673279144199,
+        "initialRotationY": 211.20315000913718,
+        "hoverRotation2d": 143.32478592487647,
+        "hoverRotationX": 114.60191901978095,
+        "hoverRotationY": 4.390851067268143
+    }
+]
+[
+    {
+        "diameter": 20,
+        "initialRotation2d": 237.9512771335044,
+        "initialRotationX": 177.728621639342,
+        "initialRotationY": 175.6565253726027,
+        "hoverRotation2d": -54.820545277145925,
+        "hoverRotationX": -92.60787416268721,
+        "hoverRotationY": -55.983238390201464
+    },
+    {
+        "diameter": 28,
+        "initialRotation2d": 186.5576496919581,
+        "initialRotationX": 164.69693000410496,
+        "initialRotationY": 190.40779347275873,
+        "hoverRotation2d": -34.768424939115114,
+        "hoverRotationX": -296.8876811310532,
+        "hoverRotationY": -254.68072504207257
+    },
+    {
+        "diameter": 36,
+        "initialRotation2d": 214.41238163570415,
+        "initialRotationX": 155.1434185735546,
+        "initialRotationY": 153.44762417539496,
+        "hoverRotation2d": 115.84104704244008,
+        "hoverRotationX": 84.2080839711137,
+        "hoverRotationY": 77.73221982712609
+    }
+]
+[
+    {
+        "diameter": 20,
+        "initialRotation2d": 196.39568799777336,
+        "initialRotationX": 270.63107107084,
+        "initialRotationY": 158.71705294019367,
+        "hoverRotation2d": -141.2133184779704,
+        "hoverRotationX": -113.88334096774197,
+        "hoverRotationY": -93.0210950048589
+    },
+    {
+        "diameter": 28,
+        "initialRotation2d": 129.77130250754476,
+        "initialRotationX": 225.31829227755924,
+        "initialRotationY": 178.63363254068219,
+        "hoverRotation2d": 112.34810429436315,
+        "hoverRotationX": 285.0519361794179,
+        "hoverRotationY": 33.413947427891074
+    },
+    {
+        "diameter": 36,
+        "initialRotation2d": 248.27689997982495,
+        "initialRotationX": 208.7490360907435,
+        "initialRotationY": 200.3412561951244,
+        "hoverRotation2d": 44.56370463556637,
+        "hoverRotationX": 115.29454508774542,
+        "hoverRotationY": 140.28476008437062
+    }
+]
+[
+    {
+        "diameter": 20,
+        "initialRotation2d": 180.31467712934668,
+        "initialRotationX": 227.90528999778246,
+        "initialRotationY": 211.43420261233496,
+        "hoverRotation2d": 47.55385235246722,
+        "hoverRotationX": 144.1440808411194,
+        "hoverRotationY": 140.12568500235915
+    },
+    {
+        "diameter": 28,
+        "initialRotation2d": 168.7450465378063,
+        "initialRotationX": 205.01981173332447,
+        "initialRotationY": 145.578242633043,
+        "hoverRotation2d": 277.81654231698263,
+        "hoverRotationX": 85.45352352865403,
+        "hoverRotationY": 205.99926852610372
+    },
+    {
+        "diameter": 36,
+        "initialRotation2d": 182.7414111852807,
+        "initialRotationX": 172.0653089448483,
+        "initialRotationY": 198.06362067165233,
+        "hoverRotation2d": 64.99711249451782,
+        "hoverRotationX": 108.02769247633051,
+        "hoverRotationY": 41.43125228756415
+    }
+]
+[
+    {
+        "diameter": 20,
+        "initialRotation2d": 151.09482922833203,
+        "initialRotationX": 209.21088908112813,
+        "initialRotationY": 160.3317931547505,
+        "hoverRotation2d": 75.34633947100421,
+        "hoverRotationX": 36.874026022586015,
+        "hoverRotationY": 117.24156372458333
+    },
+    {
+        "diameter": 28,
+        "initialRotation2d": 159.80739357878554,
+        "initialRotationX": 211.44410379953723,
+        "initialRotationY": 198.90314619549434,
+        "hoverRotation2d": -150.16133551906265,
+        "hoverRotationX": -3.8532702846678424,
+        "hoverRotationY": -102.06326829940673
+    },
+    {
+        "diameter": 36,
+        "initialRotation2d": 169.12990730788027,
+        "initialRotationX": 223.08923681893722,
+        "initialRotationY": 176.3343391973632,
+        "hoverRotation2d": 6.87176473950707,
+        "hoverRotationX": 130.12310801483238,
+        "hoverRotationY": 59.017515629436225
+    }
+]
+[
+    {
+        "diameter": 20,
+        "initialRotation2d": 236.32637039623376,
+        "initialRotationX": 209.18480286835864,
+        "initialRotationY": 147.1187546606631,
+        "hoverRotation2d": 84.20044057792056,
+        "hoverRotationX": 133.1060971857348,
+        "hoverRotationY": 63.27456287519764
+    },
+    {
+        "diameter": 28,
+        "initialRotation2d": 228.0559025894675,
+        "initialRotationX": 218.90714457054492,
+        "initialRotationY": 192.9431150134779,
+        "hoverRotation2d": -274.5346344008504,
+        "hoverRotationX": -217.92093443490782,
+        "hoverRotationY": -245.55192620811368
+    },
+    {
+        "diameter": 36,
+        "initialRotation2d": 229.898758704643,
+        "initialRotationX": 228.78621167996266,
+        "initialRotationY": 200.57676801795313,
+        "hoverRotation2d": -59.27677004432118,
+        "hoverRotationX": -79.56769712452855,
+        "hoverRotationY": -36.52319065564613
+    }
+]
+[
+    {
+        "diameter": 20,
+        "initialRotation2d": 128.7462987707604,
+        "initialRotationX": 163.22887617316894,
+        "initialRotationY": 190.27693434954335,
+        "hoverRotation2d": 3.632654030666904,
+        "hoverRotationX": 22.196576222034547,
+        "hoverRotationY": 67.99128669242391
+    },
+    {
+        "diameter": 28,
+        "initialRotation2d": 183.2735463897408,
+        "initialRotationX": 189.25752511341693,
+        "initialRotationY": 164.3674610623489,
+        "hoverRotation2d": 107.3043592956505,
+        "hoverRotationX": 27.226102536872233,
+        "hoverRotationY": 247.5528939978542
+    },
+    {
+        "diameter": 36,
+        "initialRotation2d": 150.7184661783167,
+        "initialRotationX": 223.5349299695442,
+        "initialRotationY": 178.64949074089697,
+        "hoverRotation2d": -136.5934969735204,
+        "hoverRotationX": -59.33477226228354,
+        "hoverRotationY": -99.40465357965446
+    }
+]
+[
+    {
+        "diameter": 20,
+        "initialRotation2d": 122.91750839463778,
+        "initialRotationX": 169.77804641826944,
+        "initialRotationY": 158.62642380737088,
+        "hoverRotation2d": 146.5921265500447,
+        "hoverRotationX": 28.136085464587847,
+        "hoverRotationY": 92.82730810432398
+    },
+    {
+        "diameter": 28,
+        "initialRotation2d": 241.5851344528014,
+        "initialRotationX": 202.34077044171156,
+        "initialRotationY": 199.56671919246543,
+        "hoverRotation2d": 35.48998047319938,
+        "hoverRotationX": 299.28972865824164,
+        "hoverRotationY": 37.71127774511049
+    },
+    {
+        "diameter": 36,
+        "initialRotation2d": 188.72781999677687,
+        "initialRotationX": 217.94119155204828,
+        "initialRotationY": 173.68612681840372,
+        "hoverRotation2d": -109.95022656696804,
+        "hoverRotationX": -92.8169006964939,
+        "hoverRotationY": -2.873595885492386
+    }
+]
+[
+    {
+        "diameter": 20,
+        "initialRotation2d": 225.5717879480348,
+        "initialRotationX": 169.38878317707247,
+        "initialRotationY": 176.8228493674963,
+        "hoverRotation2d": -50.09259627157287,
+        "hoverRotationX": -59.79540245469931,
+        "hoverRotationY": -79.89141460250939
+    },
+    {
+        "diameter": 28,
+        "initialRotation2d": 175.2011575579146,
+        "initialRotationX": 213.2364216539458,
+        "initialRotationY": 207.04211021688957,
+        "hoverRotation2d": -79.94967450596393,
+        "hoverRotationX": -187.18275013999417,
+        "hoverRotationY": -171.09079209444792
+    },
+    {
+        "diameter": 36,
+        "initialRotation2d": 169.59567127858497,
+        "initialRotationX": 231.2344453222491,
+        "initialRotationY": 194.69153707167362,
+        "hoverRotation2d": 140.0915063867414,
+        "hoverRotationX": 143.65379884223967,
+        "hoverRotationY": 35.5668094864417
+    }
+]
+[
+    {
+        "diameter": 20,
+        "initialRotation2d": 122.70112968057708,
+        "initialRotationX": 210.1863687677727,
+        "initialRotationY": 177.42304817135516,
+        "hoverRotation2d": -69.21772002644198,
+        "hoverRotationX": -87.739090553598,
+        "hoverRotationY": -60.99639317408704
+    },
+    {
+        "diameter": 28,
+        "initialRotation2d": 145.72901569314274,
+        "initialRotationX": 163.75617218001904,
+        "initialRotationY": 212.82655480198497,
+        "hoverRotation2d": 184.20654896349254,
+        "hoverRotationX": 25.91645691075135,
+        "hoverRotationY": 213.75073159426748
+    },
+    {
+        "diameter": 36,
+        "initialRotation2d": 184.076883842685,
+        "initialRotationX": 185.47463579325844,
+        "initialRotationY": 204.0248390688884,
+        "hoverRotation2d": 90.77210564719734,
+        "hoverRotationX": 100.13310291811209,
+        "hoverRotationY": 4.4407764171555115
+    }
+]
+[
+    {
+        "diameter": 20,
+        "initialRotation2d": 200.1632764491497,
+        "initialRotationX": 214.62201040069266,
+        "initialRotationY": 157.48893579173736,
+        "hoverRotation2d": 10.950768322020533,
+        "hoverRotationX": 41.31518107144615,
+        "hoverRotationY": 37.388660106235236
+    },
+    {
+        "diameter": 28,
+        "initialRotation2d": 231.14429447823022,
+        "initialRotationX": 191.0044609707836,
+        "initialRotationY": 179.38155131010038,
+        "hoverRotation2d": -91.01827336485238,
+        "hoverRotationX": -2.1522830897109158,
+        "hoverRotationY": -282.4230101176252
+    },
+    {
+        "diameter": 36,
+        "initialRotation2d": 237.61068270900427,
+        "initialRotationX": 221.66000748840594,
+        "initialRotationY": 180.6226150495117,
+        "hoverRotation2d": -8.755874778666373,
+        "hoverRotationX": -113.57367589521287,
+        "hoverRotationY": -55.41398350931327
+    }
+]
+
+
+bestEnd:
+[
+    {
+        "diameter": 20,
+        "initialRotation2d": 135.23829960012148,
+        "initialRotationX": 272.9721962661649,
+        "initialRotationY": 166.60853121621022,
+        "hoverRotation2d": -116.54409854075683,
+        "hoverRotationX": -48.369379433279256,
+        "hoverRotationY": -33.501285496817935
+    },
+    {
+        "diameter": 28,
+        "initialRotation2d": 219.21697843869094,
+        "initialRotationX": 267.7433687662742,
+        "initialRotationY": 209.49190120727857,
+        "hoverRotation2d": -164.01034702487823,
+        "hoverRotationX": -43.167058587217966,
+        "hoverRotationY": -287.1500856471343
+    },
+    {
+        "diameter": 36,
+        "initialRotation2d": 237.43710286850734,
+        "initialRotationX": 154.34509998665274,
+        "initialRotationY": 153.3851029388936,
+        "hoverRotation2d": -129.92602586063907,
+        "hoverRotationX": -79.03578478461782,
+        "hoverRotationY": -126.10808995584456
+    }
+]

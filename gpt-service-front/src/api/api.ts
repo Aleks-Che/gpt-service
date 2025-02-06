@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import { LlmModel } from '../types';
+
 const API_URL = process.env.REACT_APP_API_URL;
 
 const api = axios.create({
@@ -17,12 +19,15 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-export const fetchModels = () => api.get('/api/models');
+export const fetchModels = async (): Promise<LlmModel[]> => {
+  const response = api.get('/api/models');
+  return (await response).data;
+};
 
-export const fetchConversations = () => api.get('/api/conversations');
+export const fetchChats = () => api.get('/api/chat');
 
-export const createConversation = (message: string, modelId: number) => 
-  api.post('/api/conversations', { message, modelId });
+export const createChat = (message: string, modelId: number) => 
+  api.post('/api/chat', { message, modelId });
 
 export const getCurrentUser = () => api.get('/api/users/current');
 
