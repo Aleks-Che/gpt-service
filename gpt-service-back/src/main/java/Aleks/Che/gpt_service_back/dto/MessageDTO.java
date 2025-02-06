@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Builder
 public class MessageDTO {
     private Long id;
-    private Long conversationId;
+    private Long chatId;
     private MessageType messageType;
     private String content;
     private Integer tokensCount;

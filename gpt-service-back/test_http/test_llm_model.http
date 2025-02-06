@@ -26,9 +26,10 @@ Content-Type: application/json
 }
 
 ### Получение всех моделей
-GET http://localhost:8080/api/v1/models
+GET http://localhost:8080/api/models
 Content-Type: application/json
-Cookie: JSESSIONID=544566F76F3CFE68300E6CF359795194
+authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGVrcyIsImlhdCI6MTczODgyNTIxOSwiZXhwIjoxNzQwMDM0ODE5fQ.3NJDT9c1wRPk9PiAa8YHlSrkPYmbPscRK5GGSSkT3ZModXAPzo6OIK8M7GzAEIQEXYHOnBjitvN7YxnKbLpiPg
+
 
 ### Удаление модели
 DELETE http://localhost:8080/api/v1/models/1

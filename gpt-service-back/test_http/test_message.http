@@ -1,6 +1,6 @@
 ### Сообщения
 ## Отправка текстового сообщения
-POST http://localhost:8080/api/v1/messages/conversation/1
+POST http://localhost:8080/api/v1/messages/chat/1
 Content-Type: application/json
 
 {
@@ -8,7 +8,7 @@ Content-Type: application/json
 }
 
 ### Отправка сообщения с файлом
-POST http://localhost:8080/api/v1/messages/conversation/1/with-file
+POST http://localhost:8080/api/v1/messages/chat/1/with-file
 Content-Type: multipart/form-data; boundary=boundary
 
 --boundary
@@ -35,7 +35,7 @@ Content-Type: application/json
 }
 
 ### Удаление сообщений после указанного
-DELETE http://localhost:8080/api/v1/messages/conversation/1/after/5
+DELETE http://localhost:8080/api/v1/messages/chat/1/after/5
 
 ### Удаление сообщения
 DELETE http://localhost:8080/api/v1/messages/1

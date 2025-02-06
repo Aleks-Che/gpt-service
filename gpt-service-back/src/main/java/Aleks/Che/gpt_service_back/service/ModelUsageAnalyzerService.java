@@ -1,7 +1,7 @@
 package Aleks.Che.gpt_service_back.service;
 
 import Aleks.Che.gpt_service_back.model.user.User;
-import Aleks.Che.gpt_service_back.repository.ConversationRepository;
+import Aleks.Che.gpt_service_back.repository.ChatRepository;
 import Aleks.Che.gpt_service_back.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ModelUsageAnalyzerService {
     private final UserRepository userRepository;
-    private final ConversationRepository conversationRepository;
+    private final ChatRepository chatRepository;
 
     @Scheduled(cron = "0 0 3 * * *") // Запуск каждый день в 3 часа ночи
     public void analyzeMostUsedModels() {
@@ -21,8 +21,8 @@ public class ModelUsageAnalyzerService {
         
         for (User user : users) {
             // Здесь нужно добавить логику подсчета самой используемой модели
-            // на основе истории использования из таблицы conversations
-            Long mostUsedModelId = conversationRepository.findMostUsedModelByUserId(user.getId());
+            // на основе истории использования из таблицы t_chat
+            Long mostUsedModelId = chatRepository.findMostUsedModelByUserId(user.getId());
             user.setMostUseLlm(mostUsedModelId);
             userRepository.save(user);
         }

@@ -9,9 +9,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "t_conversation")
+@Table(name = "t_chat")
 @Data
-public class Conversation {
+public class ChatEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,7 +30,7 @@ public class Conversation {
     private LocalDateTime updatedAt;
     private boolean isArchived;
     
-    @OneToMany(mappedBy = "conversation")
+    @OneToMany(mappedBy = "chat")
     @JsonIgnore
     private List<Message> messages;
 }

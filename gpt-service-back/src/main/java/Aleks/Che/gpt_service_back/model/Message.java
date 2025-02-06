@@ -14,8 +14,8 @@ public class Message {
     private Long id;
     
     @ManyToOne
-    @JoinColumn(name = "conversation_id")
-    private Conversation conversation;
+    @JoinColumn(name = "chat_id")
+    private ChatEntity chat;
     
     @Enumerated(EnumType.STRING)
     private MessageType messageType;

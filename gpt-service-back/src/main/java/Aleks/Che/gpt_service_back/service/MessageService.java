@@ -1,11 +1,10 @@
 package Aleks.Che.gpt_service_back.service;
 
 import Aleks.Che.gpt_service_back.dto.MessageDTO;
-import Aleks.Che.gpt_service_back.model.Conversation;
+import Aleks.Che.gpt_service_back.model.ChatEntity;
 import Aleks.Che.gpt_service_back.model.Message;
 import Aleks.Che.gpt_service_back.model.MessageType;
 import Aleks.Che.gpt_service_back.repository.MessageRepository;
-import Aleks.Che.gpt_service_back.service.ConversationService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,14 +21,14 @@ import java.time.LocalDateTime;
 public class MessageService {
     
     private final MessageRepository messageRepository;
-    private final ConversationService conversationService;
+    private final ChatService chatService;
     private final FileStorageService fileStorageService;
     
-    public Message sendMessage(Long conversationId, MessageDTO dto) {
-        Conversation conversation = conversationService.getConversationById(conversationId);
+    public Message sendMessage(Long chatId, MessageDTO dto) {
+        ChatEntity chat = chatService.getChatById(chatId);
         
         Message message = new Message();
-        message.setConversation(conversation);
+        message.setChat(chat);
         message.setMessageType(MessageType.REQUEST);
         message.setContent(dto.getContent());
         message.setTokensCount(calculateTokens(dto.getContent()));
@@ -38,12 +37,12 @@ public class MessageService {
         Message savedMessage = messageRepository.save(message);
         
         // Здесь логика отправки запроса к LLM и сохранение ответа
-        Message response = processLlmResponse(conversation, dto.getContent());
+        Message response = processLlmResponse(chat, dto.getContent());
         
         return savedMessage;
     }
     
-    public Message sendMessageWithFile(Long conversationId, MessageDTO dto, MultipartFile file) {
+    public Message sendMessageWithFile(Long chatId, MessageDTO dto, MultipartFile file) {
         String filePath = fileStorageService.storeFile(file);
         
         Message message = new Message();
@@ -55,8 +54,8 @@ public class MessageService {
         return messageRepository.save(message);
     }
     
-    public void deleteMessagesAfter(Long conversationId, Long messageId) {
-        messageRepository.deleteByConversationIdAndIdGreaterThan(conversationId, messageId);
+    public void deleteMessagesAfter(Long chatId, Long messageId) {
+        messageRepository.deleteByChatIdAndIdGreaterThan(chatId, messageId);
     }
     
     private Integer calculateTokens(String content) {
@@ -64,7 +63,7 @@ public class MessageService {
         return content.length() / 4; // Упрощенный пример
     }
     
-    private Message processLlmResponse(Conversation conversation, String prompt) {
+    private Message processLlmResponse(ChatEntity chat, String prompt) {
         // Логика обработки запроса к LLM модели и сохранение ответа
         return null; // Заглушка
     }

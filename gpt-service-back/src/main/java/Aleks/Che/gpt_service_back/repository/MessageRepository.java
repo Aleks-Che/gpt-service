@@ -12,19 +12,19 @@ import java.util.List;
 
 @Repository
 public interface MessageRepository extends JpaRepository<Message, Long> {
-    List<Message> findByConversationIdOrderByCreatedAt(Long conversationId);
+    List<Message> findByChatIdOrderByCreatedAt(Long chatId);
     
-    @Query("SELECT m FROM Message m WHERE m.conversation.id = :conversationId " +
+    @Query("SELECT m FROM Message m WHERE m.chat.id = :chatId " +
            "AND m.createdAt >= :startDate AND m.createdAt <= :endDate")
-    List<Message> findByConversationAndDateRange(
-        @Param("conversationId") Long conversationId,
+    List<Message> findByChatAndDateRange(
+        @Param("chatId") Long chatId,
         @Param("startDate") LocalDateTime startDate,
         @Param("endDate") LocalDateTime endDate
     );
     
-    void deleteByConversationIdAndIdGreaterThan(Long conversationId, Long messageId);
+    void deleteByChatIdAndIdGreaterThan(Long chatId, Long messageId);
     
-    @Query("SELECT COUNT(m) FROM Message m WHERE m.conversation.user = :user " +
+    @Query("SELECT COUNT(m) FROM Message m WHERE m.chat.user = :user " +
            "AND m.createdAt >= :startDate AND m.createdAt <= :endDate")
     long countUserMessagesInPeriod(
         @Param("user") User user,
@@ -32,8 +32,8 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
         @Param("endDate") LocalDateTime endDate
     );
     
-    @Query("SELECT SUM(m.tokensCount) FROM Message m WHERE m.conversation.user = :user " +
-           "AND m.conversation.model.id = :modelId " +
+    @Query("SELECT SUM(m.tokensCount) FROM Message m WHERE m.chat.user = :user " +
+           "AND m.chat.model.id = :modelId " +
            "AND m.createdAt >= :startDate AND m.createdAt <= :endDate")
     Long sumTokensByUserAndModelInPeriod(
         @Param("user") User user,

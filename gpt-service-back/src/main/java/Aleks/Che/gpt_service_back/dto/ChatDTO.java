@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ConversationDTO {
+public class ChatDTO {
     private Long id;
     private String title;
     private Long modelId;

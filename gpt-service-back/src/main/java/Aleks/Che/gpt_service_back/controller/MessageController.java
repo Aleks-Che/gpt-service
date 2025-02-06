@@ -15,17 +15,17 @@ public class MessageController {
     
     private final MessageService messageService;
     
-    @PostMapping("/conversation/{conversationId}")
-    public ResponseEntity<Message> sendMessage(@PathVariable Long conversationId,
+    @PostMapping("/chat/{chatId}")
+    public ResponseEntity<Message> sendMessage(@PathVariable Long chatId,
                                                @RequestBody MessageDTO messageDTO) {
-        return ResponseEntity.ok(messageService.sendMessage(conversationId, messageDTO));
+        return ResponseEntity.ok(messageService.sendMessage(chatId, messageDTO));
     }
     
-    @PostMapping("/conversation/{conversationId}/with-file")
-    public ResponseEntity<Message> sendMessageWithFile(@PathVariable Long conversationId,
+    @PostMapping("/chat/{chatId}/with-file")
+    public ResponseEntity<Message> sendMessageWithFile(@PathVariable Long chatId,
                                                      @RequestPart("message") MessageDTO messageDTO,
                                                      @RequestPart("file") MultipartFile file) {
-        return ResponseEntity.ok(messageService.sendMessageWithFile(conversationId, messageDTO, file));
+        return ResponseEntity.ok(messageService.sendMessageWithFile(chatId, messageDTO, file));
     }
     
     @PutMapping("/{messageId}")
@@ -40,10 +40,10 @@ public class MessageController {
         return ResponseEntity.noContent().build();
     }
     
-    @DeleteMapping("/conversation/{conversationId}/after/{messageId}")
-    public ResponseEntity<Void> deleteMessagesAfter(@PathVariable Long conversationId,
+    @DeleteMapping("/chat/{chatId}/after/{messageId}")
+    public ResponseEntity<Void> deleteMessagesAfter(@PathVariable Long chatId,
                                                   @PathVariable Long messageId) {
-        messageService.deleteMessagesAfter(conversationId, messageId);
+        messageService.deleteMessagesAfter(chatId, messageId);
         return ResponseEntity.noContent().build();
     }
 }
