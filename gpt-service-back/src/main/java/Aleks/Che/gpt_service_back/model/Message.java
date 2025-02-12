@@ -1,5 +1,6 @@
 package Aleks.Che.gpt_service_back.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,6 +16,7 @@ public class Message {
     
     @ManyToOne
     @JoinColumn(name = "chat_id")
+    @JsonIgnore
     private Chat chat;
     
     @Enumerated(EnumType.STRING)
@@ -22,8 +24,14 @@ public class Message {
     
     @Column(columnDefinition = "TEXT")
     private String content;
-    
+
     private Integer tokensCount;
+
+    @Column(columnDefinition = "TEXT")
+    private String contentSummarize;
+
+    private Integer summarizeTokensCount;
+
     private Timestamp createdAt;
     private String filePath;
     private Long fileSizeBytes;

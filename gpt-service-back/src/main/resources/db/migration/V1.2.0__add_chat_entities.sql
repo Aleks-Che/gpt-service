@@ -74,6 +74,8 @@ CREATE TABLE t_message (
     message_type VARCHAR(50) NOT NULL, -- REQUEST, RESPONSE
     content TEXT NOT NULL,
     tokens_count INTEGER,
+    content_summarize TEXT,
+    summarize_tokens_count INTEGER,
     created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     file_path VARCHAR(1024),
     file_size_bytes BIGINT,
@@ -103,6 +105,10 @@ VALUES ('Free', 'Basic free subscription', 0.00, 30);
 -- Insert default model (example)
 INSERT INTO t_llm_model (name, description, model_type, provider, max_tokens, temperature)
 VALUES ('GPT-3.5-Turbo', 'OpenAI GPT-3.5 Turbo Model', 'EXTERNAL', 'OPENAI', 4096, 0.7);
+
+-- Insert default model (example)
+INSERT INTO t_llm_model (name, description, model_type, provider, max_tokens, temperature)
+VALUES ('Qwen2.5-Coder', 'Qwen2.5-Coder-7B-Instruct', 'LOCAL', 'ALIBABA', 2048, 0.7);
 
 -- Set up free subscription access to GPT-3.5
 INSERT INTO t_subscription_model_access (subscription_id, model_id, monthly_request_limit, max_tokens_per_request, max_file_size_mb)

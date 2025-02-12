@@ -55,19 +55,22 @@ jwt:
 
   application:
     name: gpt-service-back
-logging:
-  level:
-    Aleks:
-      Che:
-        gpt_service_back: DEBUG
-    org:
-      springframework:
-        security: DEBUG
-      hibernate:
-        SQL: TRACE
-        type:
-          descriptor:
-            sql: TRACE
+#logging:
+#  level:
+#    Aleks:
+#      Che:
+#        gpt_service_back: DEBUG
+#    org:
+#      springframework:
+#        security: DEBUG
+#      hibernate:
+#        SQL: TRACE
+#        type:
+#          descriptor:
+#            sql: TRACE
 
 templates:
   directory: src/main/resources/templates
+llm:
+  server:
+    url: http://localhost:8000

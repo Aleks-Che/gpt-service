@@ -61,6 +61,7 @@ public class AuthService {
         user.setIsActive(true);
         user.setEmailConfirm(false);
         user.setPhoneNumberConfirm(false);
+        user.setDefaultLlm(2L);
         user.setSubscription("Free");
         user.setRoles(roleSet);
         userRepository.save(user);

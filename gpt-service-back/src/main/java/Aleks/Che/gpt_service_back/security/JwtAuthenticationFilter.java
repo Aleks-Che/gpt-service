@@ -27,8 +27,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         final String authHeader = request.getHeader("Authorization");
+        log.debug("Processing request: {} {}", request.getMethod(), request.getRequestURI());
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            log.debug("No valid auth header found");
             filterChain.doFilter(request, response);
             return;
         }
@@ -42,13 +44,21 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 if (jwtService.isTokenValid(jwt, userDetails)) {
                     Authentication authentication = authenticationService.getAuthentication(jwt);
                     SecurityContextHolder.getContext().setAuthentication(authentication);
+                    log.debug("Successfully authenticated user: {}", username);
                 }
             }
         } catch (Exception e) {
             log.error("Error processing JWT token: ", e);
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            return;
         }
 
         filterChain.doFilter(request, response);
     }
 
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        return request.getRequestURI().equals("/api/auth/login") ||
+                request.getRequestURI().equals("/api/auth/register");
+    }
 }

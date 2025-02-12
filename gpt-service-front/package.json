@@ -10,6 +10,7 @@
     "@types/p5": "^1.7.6",
     "axios": "^1.7.9",
     "cra-template-typescript": "1.2.0",
+    "event-source-polyfill": "^1.0.31",
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.474.0",
     "react": "^19.0.0",
@@ -46,6 +47,7 @@
     ]
   },
   "devDependencies": {
+    "@types/event-source-polyfill": "^1.0.5",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@types/styled-components": "^5.1.34"

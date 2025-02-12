@@ -1,11 +1,15 @@
-import { Send, Edit, X, Copy, Trash2, Check } from 'lucide-react';
+import axios from 'axios';
+import { Send, Edit, X, Copy, Trash2, Check, StopCircle, Repeat } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { addChat } from '../store/slices/chatsSlice';
 import { setModels, setSelectedModel } from '../store/slices/modelsSlice';
-import { fetchModels } from '../api/api';
+import { createChat, fetchChats, fetchModels, generateResponse } from '../api/api';
 import { RootState } from '../store';
+import { Chat as ChatType, Message as MessageType } from '../types';
 
 const ChatContainer = styled.div`
   flex: 1;
@@ -179,7 +183,10 @@ interface ChatMessage {
 }
 
 const Chat: React.FC = () => {
+  const { chatId } = useParams();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [currentChatId, setCurrentChatId] = useState<string | null>(null);
   const [editingMessageId, setEditingMessageId] = useState<string | null>(null);
   const [message, setMessage] = useState<string>('');
   const dispatch = useDispatch();
@@ -211,61 +218,80 @@ const Chat: React.FC = () => {
     scrollToBottom();
   }, [messages]);
 
+  useEffect(() => {
+    if (chatId) {
+      const loadChatHistory = async () => {
+        const chat = await fetchChats();
+        const currentChat = chat.data.find((c: ChatType) => c.id === Number(chatId));
+        if (currentChat) {
+          setCurrentChatId(currentChat.id.toString());  // Устанавливаем ID текущего чата
+          const formattedMessages = currentChat.messages.map((msg: MessageType) => ({
+            id: String(msg.id),
+            role: msg.messageType === 'REQUEST' ? 'user' : 'assistant',
+            content: msg.content,
+            timestamp: new Date(msg.createdAt).getTime()
+          }));
+          setMessages(formattedMessages);
+        }
+      };
+      loadChatHistory();
+    }
+  }, [chatId]);
+
   const copyToClipboard = async (content: string) => {
     await navigator.clipboard.writeText(content);
     // Здесь можно добавить toast уведомление "Скопировано в буфер обмена"
   };
 
-  const sendMessage = async (messageContent: string, editedMessageId?: string) => {
+  const sendMessage = async (messageContent: string) => {
     if (!messageContent.trim() || !selectedModel) return;
+    setIsGenerating(true);
 
-    let newMessages = [...messages];
-
-    // Если это редактирование - удаляем все последующие сообщения
-    if (editedMessageId) {
-      // Find index of edited message
-      const editIndex = messages.findIndex(m => m.id === editedMessageId);
-      // Remove all messages after edited message
-      newMessages = messages.slice(0, editIndex);
-    }
-
-    // Add new user message
-    const userMessage: ChatMessage = {
-      id: editedMessageId || crypto.randomUUID(),
-      role: 'user',
-      content: messageContent,
-      timestamp: Date.now()
-    };
-
-    newMessages = [...newMessages, userMessage];
-    setMessages(newMessages);
-
-    // Отправляем запрос к API
     try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          model: selectedModel.id, // Используем ID из стора
-          message: messageContent,
-          history: newMessages
-        })
-      });
+      // Create chat and get chatId
+      const chatResponse = await createChat(messageContent, selectedModel.id);
+      const newChat = chatResponse.data;
 
-      // Добавляем ответ модели в историю
-      const aiResponse = await response.json();
-      setMessages(prev => [...prev, {
-        id: crypto.randomUUID(),
-        role: 'assistant',
-        content: aiResponse.message,
-        timestamp: Date.now()
-      }]);
+      // Update store with new chat
+      dispatch(addChat(newChat));
+      setCurrentChatId(newChat.id);
+
+      // Start generation
+      const eventSource = generateResponse(newChat.id);
+      let accumulatedResponse = '';
+
+      eventSource.onmessage = (event) => {
+        const chunk = JSON.parse(event.data);
+        accumulatedResponse += chunk.content;
+
+        setMessages(prev => {
+          const newMessages = [...prev];
+          const lastMessage = newMessages[newMessages.length - 1];
+          if (lastMessage?.role === 'assistant') {
+            lastMessage.content = accumulatedResponse;
+          } else {
+            newMessages.push({
+              id: crypto.randomUUID(),
+              role: 'assistant',
+              content: accumulatedResponse,
+              timestamp: Date.now()
+            });
+          }
+          return newMessages;
+        });
+      };
+
+      eventSource.onerror = () => {
+        eventSource.close();
+        setIsGenerating(false);
+      };
+
     } catch (error) {
       console.error('Error:', error);
+      setIsGenerating(false);
     }
   };
+
 
   const deleteMessage = async (messageId: string) => {
     try {
@@ -305,6 +331,20 @@ const Chat: React.FC = () => {
     setMessage('');
   };
 
+  const fetchSummarization = async (text: string, mode: "short" | "long"): Promise<string> => {
+    try {
+      const response = await axios.post<string>(
+        "http://localhost:8000/summarize",
+        { text, mode },
+        { headers: { "Content-Type": "application/json" } }
+      );
+      return response.data;
+    } catch (error: any) {
+      console.error("Summarization request failed:", error);
+      throw error;
+    }
+  };
+
   // Обработчик отправки сообщения или сохранения редактирования
   const handleSubmit = () => {
     if (message.trim()) {
@@ -316,6 +356,7 @@ const Chat: React.FC = () => {
         inputElement.textContent = '';
       }
     }
+    // fetchSummarization(message, "short");
   };
 
   // Обработчик изменения выбранной модели
@@ -335,6 +376,70 @@ const Chat: React.FC = () => {
       cancelEdit();
     }
   };
+
+  const stopGeneration = () => {
+    if (currentChatId) {
+      fetch(`/api/chat/${currentChatId}/stop`, { method: 'POST' });
+      setIsGenerating(false);
+    }
+  };
+
+  const regenerateResponse = async (messageId: string) => {
+    console.log("Starting regeneration...");
+    console.log("Current state:", { selectedModel, currentChatId, messageId });
+
+    if (!selectedModel || !currentChatId) {
+      console.log("Stopping due to missing model or chatId");
+      return;
+    }
+
+    setIsGenerating(true);
+
+    try {
+      // Get the message content for regeneration
+      const messageToRegenerate = messages.find(m => m.id === messageId);
+      if (!messageToRegenerate) return;
+
+      // Remove all messages after the selected message
+      const messageIndex = messages.findIndex(m => m.id === messageId);
+      setMessages(messages.slice(0, messageIndex + 1));
+
+      // Start generation with SSE
+      const eventSource = generateResponse(currentChatId, messageId);
+      let accumulatedResponse = '';
+
+      eventSource.onmessage = (event) => {
+        const chunk = event.data;
+        accumulatedResponse += chunk;
+
+        setMessages(prev => {
+          const newMessages = [...prev];
+          const lastMessage = newMessages[newMessages.length - 1];
+          if (lastMessage?.role === 'assistant') {
+            lastMessage.content = accumulatedResponse;
+          } else {
+            newMessages.push({
+              id: crypto.randomUUID(),
+              role: 'assistant',
+              content: accumulatedResponse,
+              timestamp: Date.now()
+            });
+          }
+          return newMessages;
+        });
+      };
+
+
+      eventSource.onerror = () => {
+        eventSource.close();
+        setIsGenerating(false);
+      };
+    } catch (error) {
+      console.error('Regeneration error:', error);
+      setIsGenerating(false);
+    }
+  };
+
 
   return (
     <ChatContainer>
@@ -397,6 +502,15 @@ const Chat: React.FC = () => {
                   <MessageContent>{msg.content}</MessageContent>
                   {msg.role === 'user' && (
                     <MessageActionsContainer>
+                      <ActionButton
+                        onClick={() => {
+                          console.log("Regenerate clicked for message:", msg.id);
+                          regenerateResponse(msg.id);
+                        }}
+                        title="Повторить генерацию"
+                      >
+                        <Repeat size={14} />
+                      </ActionButton>
                       <ActionButton onClick={() => handleEdit(msg.id, msg.content)} title="Редактировать">
                         <Edit size={14} />
                       </ActionButton>
@@ -428,9 +542,15 @@ const Chat: React.FC = () => {
             data-placeholder="Enter message..."
           />
           <SendButtonContainer>
-            <SendButton onClick={handleSubmit}>
-              <Send size={16} color="rgb(118, 118, 120)" />
-            </SendButton>
+            {isGenerating ? (
+              <SendButton onClick={stopGeneration}>
+                <StopCircle size={16} color="rgb(118, 118, 120)" />
+              </SendButton>
+            ) : (
+              <SendButton onClick={handleSubmit}>
+                <Send size={16} color="rgb(118, 118, 120)" />
+              </SendButton>
+            )}
           </SendButtonContainer>
         </InputContainer>
       </ChatLayout>

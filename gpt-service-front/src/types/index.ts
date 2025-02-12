@@ -1,7 +1,24 @@
 export interface Chat {
   id: number;
   title: string;
+  user: User;
+  model: LlmModel;
+  messages: Message[];
   createdAt: string;
+  updatedAt: string;
+}
+
+export interface Message {
+  id: number;
+  messageType: 'REQUEST' | 'RESPONSE';
+  content: string;
+  tokensCount: number;
+  contentSummarize: string | null;
+  summarizeTokensCount: number | null;
+  createdAt: string;
+  filePath: string | null;
+  fileSizeBytes: number | null;
+  fileMimeType: string | null;
 }
 
 export interface LlmModel {

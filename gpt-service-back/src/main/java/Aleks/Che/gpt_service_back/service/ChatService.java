@@ -1,72 +1,22 @@
 package Aleks.Che.gpt_service_back.service;
 
-import Aleks.Che.gpt_service_back.dto.ChatDTO;
+import Aleks.Che.gpt_service_back.dto.chat.ChatDTO;
+import Aleks.Che.gpt_service_back.dto.chat.NewChatRequest;
 import Aleks.Che.gpt_service_back.model.Chat;
-import Aleks.Che.gpt_service_back.model.LlmModel;
-import Aleks.Che.gpt_service_back.model.user.User;
-import Aleks.Che.gpt_service_back.repository.ChatRepository;
-import jakarta.persistence.EntityNotFoundException;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.access.AccessDeniedException;
 
-import java.nio.file.AccessDeniedException;
-import java.time.LocalDateTime;
 import java.util.List;
 
-@Service
-@Transactional
-@AllArgsConstructor
-public class ChatService {
-    
-    private final ChatRepository chatRepository;
-    private final UserService userService;
-    private final LlmModelService modelService;
-    
-    public Chat createChat(ChatDTO dto) {
-        User currentUser = userService.getCurrentUser();
-        LlmModel model = modelService.getModelById(dto.getModelId());
+public interface ChatService {
+    Chat createChat(String title, NewChatRequest request);
 
-        Chat chat = new Chat();
-        chat.setUser(currentUser);
-        chat.setTitle(dto.getTitle());
-        chat.setModel(model);
-        chat.setCreatedAt(LocalDateTime.now());
-        chat.setUpdatedAt(LocalDateTime.now());
-        
-        return chatRepository.save(chat);
-    }
-    
-    public Chat updateChat(Long id, ChatDTO dto) {
-        Chat chat = chatRepository.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Беседа не найдена"));
-            
-        chat.setTitle(dto.getTitle());
-        chat.setUpdatedAt(LocalDateTime.now());
-        
-        return chatRepository.save(chat);
-    }
-    
-    public List<Chat> getCurrentUserChats() {
-        User currentUser = userService.getCurrentUser();
-        return chatRepository.findByUserOrderByUpdatedAtDesc(currentUser);
-    }
+    Chat updateChat(Long id, ChatDTO dto);
 
-    public Chat getChatById(Long id) {
-        return chatRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Беседа с ID " + id + " не найдена"));
-    }
+    List<Chat> getCurrentUserChats();
 
-    public void deleteChat(Long id) throws AccessDeniedException {
-        User currentUser = userService.getCurrentUser();
-        Chat chat = chatRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Беседа не найдена"));
+    Chat getChatById(Long id);
 
-        if (!chat.getUser().getId().equals(currentUser.getId())) {
-            throw new AccessDeniedException("Нет прав на удаление этой беседы");
-        }
+    void deleteChat(Long id) throws AccessDeniedException;
 
-        chatRepository.deleteById(id);
-    }
-
+    Chat newMessage(Chat chat, String content);
 }

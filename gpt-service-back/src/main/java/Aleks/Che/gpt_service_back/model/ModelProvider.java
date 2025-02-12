@@ -5,6 +5,7 @@ public enum ModelProvider {
     ANTHROPIC("Anthropic"),
     GOOGLE("Google"),
     META("Meta"),
+    ALIBABA("Alibaba"),
     LOCAL("Local"),
     CUSTOM("Custom");
 

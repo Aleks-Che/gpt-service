@@ -21,16 +21,15 @@ spring:
           starttls:
             enable: true
   application:
-    name:
-      mail-sender
-logging:
-  level:
-    org:
-      hibernate:
-        SQL: TRACE
-        type:
-          descriptor:
-            sql: TRACE
+    name: gpt-service-back
+#logging:
+#  level:
+#    org:
+#      hibernate:
+#        SQL: TRACE
+#        type:
+#          descriptor:
+#            sql: TRACE
 server:
   servlet:
     context-path: /

@@ -1,5 +1,6 @@
 package Aleks.Che.gpt_service_back.dto;
 
+import Aleks.Che.gpt_service_back.model.Message;
 import Aleks.Che.gpt_service_back.model.MessageType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,4 +25,17 @@ public class MessageDTO {
     private Long fileSizeBytes;
     private String fileMimeType;
     private MultipartFile file;
+
+    public MessageDTO(Message message) {
+        this.id = message.getId();
+        this.chatId = message.getChat().getId();
+        this.messageType = message.getMessageType();
+        this.content = message.getContent();
+        this.tokensCount = message.getTokensCount();
+        this.createdAt = message.getCreatedAt().toLocalDateTime();
+        this.filePath = message.getFilePath();
+        this.fileSizeBytes = message.getFileSizeBytes();
+        this.fileMimeType = message.getFileMimeType();
+    }
+
 }

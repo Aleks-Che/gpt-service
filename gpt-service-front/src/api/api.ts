@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { EventSourcePolyfill } from 'event-source-polyfill';
 
 import { LlmModel } from '../types';
 
@@ -27,7 +28,28 @@ export const fetchModels = async (): Promise<LlmModel[]> => {
 export const fetchChats = () => api.get('/api/chat');
 
 export const createChat = (message: string, modelId: number) => 
-  api.post('/api/chat', { message, modelId });
+  api.post('/api/chat/create', { message, modelId });
+
+
+export const generateResponse = (chatId: string, messageId?: string) => {
+  const token = localStorage.getItem('auth_token');
+  console.log('Using token:', token);
+  
+  const url = messageId 
+    ? `${API_URL}/api/chat/${chatId}/generate?messageId=${messageId}`
+    : `${API_URL}/api/chat/${chatId}/generate`;
+    
+  const eventSource = new EventSourcePolyfill(url, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'text/event-stream'
+    }
+  });
+  
+  return eventSource;
+};
+
+
 
 export const getCurrentUser = () => api.get('/api/users/current');
 

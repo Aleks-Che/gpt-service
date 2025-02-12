@@ -13,7 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
@@ -38,11 +39,11 @@ public class MessageService {
         Message savedMessage = messageRepository.save(message);
         
         // Здесь логика отправки запроса к LLM и сохранение ответа
-        Message response = processLlmResponse(chat, dto.getContent());
+//        Message response = processLlmResponse(chat, dto.getContent());
         
         return savedMessage;
     }
-    
+
     public Message sendMessageWithFile(Long chatId, MessageDTO dto, MultipartFile file) {
         String filePath = fileStorageService.storeFile(file);
         
@@ -59,7 +60,7 @@ public class MessageService {
         messageRepository.deleteByChatIdAndIdGreaterThan(chatId, messageId);
     }
     
-    private Integer calculateTokens(String content) {
+    public static Integer calculateTokens(String content) {
         // Логика подсчета токенов
         return content.length() / 4; // Упрощенный пример
     }
