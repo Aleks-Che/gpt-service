@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { EventSourcePolyfill } from 'event-source-polyfill';
 import { Send, Edit, X, Copy, Trash2, Check, StopCircle, Repeat } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -193,6 +194,7 @@ const Chat: React.FC = () => {
   const { models, selectedModel } = useSelector((state: RootState) => state.models);
   const [editingContent, setEditingContent] = useState<string>('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const eventSourceRef = useRef<EventSourcePolyfill | null>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -256,11 +258,11 @@ const Chat: React.FC = () => {
       dispatch(addChat(newChat));
       setCurrentChatId(newChat.id);
 
-      // Start generation
-      const eventSource = generateResponse(newChat.id);
+      // Start generation and keep a reference to the event source in ref
+      eventSourceRef.current = generateResponse(newChat.id);
       let accumulatedResponse = '';
 
-      eventSource.onmessage = (event) => {
+      eventSourceRef.current.onmessage = (event) => {
         const chunk = JSON.parse(event.data);
         accumulatedResponse += chunk.content;
 
@@ -281,8 +283,9 @@ const Chat: React.FC = () => {
         });
       };
 
-      eventSource.onerror = () => {
-        eventSource.close();
+      eventSourceRef.current.onerror = () => {
+        eventSourceRef.current?.close();
+        eventSourceRef.current = null;
         setIsGenerating(false);
       };
 
@@ -331,20 +334,6 @@ const Chat: React.FC = () => {
     setMessage('');
   };
 
-  const fetchSummarization = async (text: string, mode: "short" | "long"): Promise<string> => {
-    try {
-      const response = await axios.post<string>(
-        "http://localhost:8000/summarize",
-        { text, mode },
-        { headers: { "Content-Type": "application/json" } }
-      );
-      return response.data;
-    } catch (error: any) {
-      console.error("Summarization request failed:", error);
-      throw error;
-    }
-  };
-
   // Обработчик отправки сообщения или сохранения редактирования
   const handleSubmit = () => {
     if (message.trim()) {
@@ -378,16 +367,14 @@ const Chat: React.FC = () => {
   };
 
   const stopGeneration = () => {
-    if (currentChatId) {
-      fetch(`/api/chat/${currentChatId}/stop`, { method: 'POST' });
+    if (eventSourceRef.current) {
+      eventSourceRef.current.close();
+      eventSourceRef.current = null;
       setIsGenerating(false);
     }
   };
 
   const regenerateResponse = async (messageId: string) => {
-    console.log("Starting regeneration...");
-    console.log("Current state:", { selectedModel, currentChatId, messageId });
-
     if (!selectedModel || !currentChatId) {
       console.log("Stopping due to missing model or chatId");
       return;
@@ -404,11 +391,11 @@ const Chat: React.FC = () => {
       const messageIndex = messages.findIndex(m => m.id === messageId);
       setMessages(messages.slice(0, messageIndex + 1));
 
-      // Start generation with SSE
-      const eventSource = generateResponse(currentChatId, messageId);
+      // Start generation with SSE and update reference
+      eventSourceRef.current = generateResponse(currentChatId, messageId);
       let accumulatedResponse = '';
 
-      eventSource.onmessage = (event) => {
+      eventSourceRef.current.onmessage = (event) => {
         const chunk = event.data;
         accumulatedResponse += chunk;
 
@@ -429,9 +416,9 @@ const Chat: React.FC = () => {
         });
       };
 
-
-      eventSource.onerror = () => {
-        eventSource.close();
+      eventSourceRef.current.onerror = () => {
+        eventSourceRef.current?.close();
+        eventSourceRef.current = null;
         setIsGenerating(false);
       };
     } catch (error) {
