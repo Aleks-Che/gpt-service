@@ -15,11 +15,11 @@ public class MessageController {
     
     private final MessageService messageService;
     
-    @PostMapping("/chat/{chatId}")
-    public ResponseEntity<Message> sendMessage(@PathVariable Long chatId,
-                                               @RequestBody MessageDTO messageDTO) {
-        return ResponseEntity.ok(messageService.sendMessage(chatId, messageDTO));
-    }
+//    @PostMapping("/chat/{chatId}")
+//    public ResponseEntity<Message> sendMessage(@PathVariable Long chatId,
+//                                               @RequestBody MessageDTO messageDTO) {
+//        return ResponseEntity.ok(messageService.saveMessage(chatId, messageDTO));
+//    }
     
     @PostMapping("/chat/{chatId}/with-file")
     public ResponseEntity<Message> sendMessageWithFile(@PathVariable Long chatId,

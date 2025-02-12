@@ -13,8 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @Transactional
@@ -26,14 +24,14 @@ public class MessageService {
     private final ChatService chatService;
     private final FileStorageService fileStorageService;
     
-    public Message sendMessage(Long chatId, MessageDTO dto) {
+    public Message saveMessage(Long chatId, String content, MessageType messageType) {
         Chat chat = chatService.getChatById(chatId);
         
         Message message = new Message();
         message.setChat(chat);
-        message.setMessageType(MessageType.REQUEST);
-        message.setContent(dto.getContent());
-        message.setTokensCount(calculateTokens(dto.getContent()));
+        message.setMessageType(messageType);
+        message.setContent(content);
+        message.setTokensCount(calculateTokens(content));
         message.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         
         Message savedMessage = messageRepository.save(message);
