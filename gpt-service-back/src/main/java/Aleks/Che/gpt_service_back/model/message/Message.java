@@ -1,5 +1,6 @@
-package Aleks.Che.gpt_service_back.model;
+package Aleks.Che.gpt_service_back.model.message;
 
+import Aleks.Che.gpt_service_back.model.Chat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -21,7 +22,10 @@ public class Message {
     
     @Enumerated(EnumType.STRING)
     private MessageType messageType;
-    
+
+    @Enumerated(EnumType.STRING)
+    private MessageStatus messageStatus;
+
     @Column(columnDefinition = "TEXT")
     private String content;
 

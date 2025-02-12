@@ -2,8 +2,9 @@ package Aleks.Che.gpt_service_back.service;
 
 import Aleks.Che.gpt_service_back.dto.MessageDTO;
 import Aleks.Che.gpt_service_back.model.Chat;
-import Aleks.Che.gpt_service_back.model.Message;
-import Aleks.Che.gpt_service_back.model.MessageType;
+import Aleks.Che.gpt_service_back.model.message.Message;
+import Aleks.Che.gpt_service_back.model.message.MessageStatus;
+import Aleks.Che.gpt_service_back.model.message.MessageType;
 import Aleks.Che.gpt_service_back.repository.MessageRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
@@ -24,12 +25,13 @@ public class MessageService {
     private final ChatService chatService;
     private final FileStorageService fileStorageService;
     
-    public Message saveMessage(Long chatId, String content, MessageType messageType) {
+    public Message saveMessage(Long chatId, String content, MessageType messageType, MessageStatus messageStatus) {
         Chat chat = chatService.getChatById(chatId);
         
         Message message = new Message();
         message.setChat(chat);
         message.setMessageType(messageType);
+        message.setMessageStatus(messageStatus);
         message.setContent(content);
         message.setTokensCount(calculateTokens(content));
         message.setCreatedAt(new Timestamp(System.currentTimeMillis()));

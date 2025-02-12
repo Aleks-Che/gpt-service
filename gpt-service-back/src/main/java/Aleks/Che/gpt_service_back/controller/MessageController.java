@@ -1,7 +1,7 @@
 package Aleks.Che.gpt_service_back.controller;
 
 import Aleks.Che.gpt_service_back.dto.MessageDTO;
-import Aleks.Che.gpt_service_back.model.Message;
+import Aleks.Che.gpt_service_back.model.message.Message;
 import Aleks.Che.gpt_service_back.service.MessageService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,7 @@
 package Aleks.Che.gpt_service_back.model;
 
+import Aleks.Che.gpt_service_back.model.message.Message;
 import Aleks.Che.gpt_service_back.model.user.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 

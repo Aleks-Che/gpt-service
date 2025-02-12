@@ -1,7 +1,7 @@
 package Aleks.Che.gpt_service_back.dto;
 
-import Aleks.Che.gpt_service_back.model.Message;
-import Aleks.Che.gpt_service_back.model.MessageType;
+import Aleks.Che.gpt_service_back.model.message.Message;
+import Aleks.Che.gpt_service_back.model.message.MessageType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

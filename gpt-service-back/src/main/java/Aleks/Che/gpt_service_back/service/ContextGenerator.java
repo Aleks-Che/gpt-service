@@ -2,8 +2,8 @@ package Aleks.Che.gpt_service_back.service;
 
 import Aleks.Che.gpt_service_back.model.Chat;
 import Aleks.Che.gpt_service_back.model.LlmModel;
-import Aleks.Che.gpt_service_back.model.Message;
-import Aleks.Che.gpt_service_back.model.MessageType;
+import Aleks.Che.gpt_service_back.model.message.Message;
+import Aleks.Che.gpt_service_back.model.message.MessageType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -64,7 +64,7 @@ public class ContextGenerator {
     private String formatMessages(List<Message> messages) {
         StringBuilder context = new StringBuilder();
         for (Message msg : messages) {
-            String role = msg.getMessageType() == MessageType.REQUEST ? "user: " : "bot: ";
+            String role = msg.getMessageType() == MessageType.USER ? "user: " : "bot: ";
             context.append(role).append(msg.getContent()).append("\n");
         }
         return context.toString();
@@ -73,7 +73,7 @@ public class ContextGenerator {
     private String formatOptimizedMessages(List<Message> messages) {
         StringBuilder context = new StringBuilder();
         for (Message msg : messages) {
-            String role = msg.getMessageType() == MessageType.REQUEST ? "user: " : "bot: ";
+            String role = msg.getMessageType() == MessageType.USER ? "user: " : "bot: ";
             String content = msg.getContentSummarize() != null ? 
                 msg.getContentSummarize() : msg.getContent();
             context.append(role).append(content).append("\n");

@@ -1,6 +1,6 @@
 package Aleks.Che.gpt_service_back.repository;
 
-import Aleks.Che.gpt_service_back.model.Message;
+import Aleks.Che.gpt_service_back.model.message.Message;
 import Aleks.Che.gpt_service_back.model.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

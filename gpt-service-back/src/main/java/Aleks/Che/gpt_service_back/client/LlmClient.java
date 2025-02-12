@@ -1,7 +1,7 @@
 package Aleks.Che.gpt_service_back.client;
 
-import Aleks.Che.gpt_service_back.model.Message;
-import Aleks.Che.gpt_service_back.model.MessageType;
+import Aleks.Che.gpt_service_back.model.message.Message;
+import Aleks.Che.gpt_service_back.model.message.MessageType;
 import Aleks.Che.gpt_service_back.service.LlmModelService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
@@ -18,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
@@ -44,7 +45,7 @@ public class LlmClient {
     public void generate(List<Message> messages, Consumer<String> onChunk) {
         var chatMessages = messages.stream()
                 .map(msg -> new ChatMessage(
-                        msg.getMessageType() == MessageType.REQUEST ? "user" : "assistant",
+                        msg.getMessageType() == MessageType.USER ? "user" : "assistant",
                         msg.getContent()
                 ))
                 .collect(Collectors.toList());
@@ -71,15 +72,15 @@ public class LlmClient {
     private ResponseExtractor<Void> responseExtractor(Consumer<String> onChunk) {
         return response -> {
             try (BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(response.getBody()))) {
+                    new InputStreamReader(response.getBody(), StandardCharsets.UTF_8))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     try {
                         ObjectMapper mapper = new ObjectMapper();
                         GenerateResponse resp = mapper.readValue(line, GenerateResponse.class);
+                        // Передаем контент напрямую без модификаций
                         onChunk.accept(resp.getContent());
                     } catch (RuntimeException e) {
-                        // Client disconnected, stop processing
                         break;
                     }
                 }

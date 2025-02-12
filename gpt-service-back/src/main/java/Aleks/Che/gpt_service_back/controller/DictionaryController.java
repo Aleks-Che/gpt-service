@@ -1,6 +1,6 @@
 package Aleks.Che.gpt_service_back.controller;
 
-import Aleks.Che.gpt_service_back.model.MessageType;
+import Aleks.Che.gpt_service_back.model.message.MessageType;
 import Aleks.Che.gpt_service_back.model.ModelProvider;
 import Aleks.Che.gpt_service_back.model.ModelType;
 import org.springframework.http.ResponseEntity;

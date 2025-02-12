@@ -4,8 +4,9 @@ import Aleks.Che.gpt_service_back.dto.chat.ChatDTO;
 import Aleks.Che.gpt_service_back.dto.chat.NewChatRequest;
 import Aleks.Che.gpt_service_back.model.Chat;
 import Aleks.Che.gpt_service_back.model.LlmModel;
-import Aleks.Che.gpt_service_back.model.Message;
-import Aleks.Che.gpt_service_back.model.MessageType;
+import Aleks.Che.gpt_service_back.model.message.Message;
+import Aleks.Che.gpt_service_back.model.message.MessageStatus;
+import Aleks.Che.gpt_service_back.model.message.MessageType;
 import Aleks.Che.gpt_service_back.model.user.User;
 import Aleks.Che.gpt_service_back.repository.ChatRepository;
 import Aleks.Che.gpt_service_back.repository.MessageRepository;
@@ -80,7 +81,8 @@ public class ChatServiceImpl implements ChatService{
     public Chat newMessage(Chat chat, String content) {
         Message message = new Message();
         message.setChat(chat);
-        message.setMessageType(MessageType.REQUEST);
+        message.setMessageType(MessageType.USER);
+        message.setMessageStatus(MessageStatus.FINISHED);
         message.setContent(content);
         message.setTokensCount(calculateTokens(content));
         message.setCreatedAt(new Timestamp(System.currentTimeMillis()));
