@@ -229,7 +229,7 @@ const Chat: React.FC = () => {
           setCurrentChatId(currentChat.id.toString());  // Устанавливаем ID текущего чата
           const formattedMessages = currentChat.messages.map((msg: MessageType) => ({
             id: String(msg.id),
-            role: msg.messageType === 'REQUEST' ? 'user' : 'assistant',
+            role: msg.messageType === 'USER' ? 'user' : 'assistant',
             content: msg.content,
             timestamp: new Date(msg.createdAt).getTime()
           }));

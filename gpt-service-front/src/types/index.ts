@@ -10,7 +10,7 @@ export interface Chat {
 
 export interface Message {
   id: number;
-  messageType: 'REQUEST' | 'RESPONSE';
+  messageType: 'USER' | 'ASSISTANT';
   content: string;
   tokensCount: number;
   contentSummarize: string | null;
