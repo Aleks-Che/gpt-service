@@ -1,0 +1,25 @@
+### Беседы
+## Создание беседы
+POST http://localhost:8080/api/v1/chat
+Content-Type: application/json
+Cookie: JSESSIONID=544566F76F3CFE68300E6CF359795194
+
+{
+  "title": "Новая беседа",
+  "modelId": 1
+}
+
+### Обновление беседы
+PUT http://localhost:8080/api/v1/chat/1
+Content-Type: application/json
+
+{
+  "title": "Обновленное название беседы"
+}
+
+### Получение бесед пользователя
+GET http://localhost:8080/api/v1/chat
+Cookie: JSESSIONID=28008A4B31AE62E20740FB1774CC5040
+
+### Удаление беседы
+DELETE http://localhost:8080/api/v1/chat/1

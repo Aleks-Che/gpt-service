@@ -1,0 +1,76 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/gpt_service_db
+    username: gpt
+    password: dW4mNoJJZt
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    open-in-view: false
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+file:
+  upload:
+    dir: ./uploads
+  max:
+    size: 10485760
+  flyway:
+    baselineOnMigrate: true
+    check-location: true
+    locations: classpath:db/migration
+    schemas: public
+    enable: true
+jwt:
+  secret: 645367566B59703373367639792F423F4528482B4D6251655468576D5A713474645367566B59703373367639792F423F4528482B4D6251655468576D5A713474
+  expiration: 1209600
+
+  # mail:
+  #    host: smtp.gmail.com
+  #    port: 587
+  #    username: dark.aleks1987@gmail.com
+  #    password: kfnftcybzhkreaxm
+  # host: smtp.go2.unisender.ru
+  # port: 587
+  # username: 5722469
+  # password: 6kfjcnb9jtbgospwx7gk5cxgew1y9fqex4pordoe
+
+  #    host: mail.netangels.ru
+  #    port: 587
+  #    username: referent@inmodul.ru
+  #    password: reiyBH1989
+  # test-connection: true
+  # properties:
+  #   mail:
+  #     smtp:
+  #       from: <referent@inmodul.ru>
+  #       auth: true
+  #       starttls:
+  #         enable: true
+  #          dsn:
+  #            notify: SUCCESS,FAILURE,DELAY
+  #          return-receipt-to: <referent@inmodul.ru>
+  #          read-receipt-to: <referent@inmodul.ru>
+
+  application:
+    name: gpt-service-back
+#logging:
+#  level:
+#    Aleks:
+#      Che:
+#        gpt_service_back: DEBUG
+#    org:
+#      springframework:
+#        security: DEBUG
+#      hibernate:
+#        SQL: TRACE
+#        type:
+#          descriptor:
+#            sql: TRACE
+
+templates:
+  directory: src/main/resources/templates
+llm:
+  server:
+    url: http://localhost:8000

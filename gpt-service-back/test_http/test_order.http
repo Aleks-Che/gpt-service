@@ -1,0 +1,69 @@
+### Заказы
+## Создание заказа 1
+POST http://localhost:8080/order/create
+Content-Type: application/json
+Cookie: JSESSIONID=61F8DD3781B93E23D6FB7979A5787149
+
+{
+  "userId": "2",
+  "totalPrice": 16120,
+  "products": [
+    {
+      "id": 4,
+      "count": 5
+    },
+    {
+      "id": 5,
+      "count": 5
+    }
+  ]
+}
+
+### Заказы
+## Создание заказа 2
+POST http://localhost:8080/order/create
+Content-Type: application/json
+Cookie: JSESSIONID=61F8DD3781B93E23D6FB7979A5787149
+
+{
+  "userId": "2",
+  "totalPrice": 10070,
+  "products": [
+    {
+      "id": 4,
+      "count": 10
+    }
+  ]
+}
+
+### Заказы
+## Создание заказа 3
+POST http://localhost:8080/order/create
+Content-Type: application/json
+Cookie: JSESSIONID=61F8DD3781B93E23D6FB7979A5787149
+
+{
+  "userId": "2",
+  "totalPrice": 3084,
+  "products": [
+    {
+      "id": 1,
+      "count": 1
+    }
+  ]
+}
+
+### Заказы
+## Получение всех заказов
+GET http://localhost:8080/order/all
+Cookie: JSESSIONID=61F8DD3781B93E23D6FB7979A5787149
+
+### Заказы
+## Получение всех заказов пользователя по его id
+GET http://localhost:8080/order/get/2
+Cookie: JSESSIONID=61F8DD3781B93E23D6FB7979A5787149
+
+### Заказы
+## Получение всех заказов для текущего авторизованного пользователя
+GET http://localhost:8080/order/current
+Cookie: JSESSIONID=61F8DD3781B93E23D6FB7979A5787149
